@@ -1,126 +1,296 @@
-# TransferMe – Flutter app (from the Figma design)
+Ngibolekeni
 
-Source design: Figma file `ZRGUX7kQyESLzbB7SkonDy` ("Small Money" adaptation, product name *TransferMe*).
+App Description
 
-> **Status – read first**
-> * The code was written without a Flutter SDK in the build environment, so it has **not been compiled or run**. Run `flutter pub get && flutter analyze && flutter test` first and expect to fix a few small things.
-> * **46 screens are imported** (12 onboarding, 17 borrower, 17 lender, incl. the BRW-01 home dashboard added last). The remaining Figma frames could not be read because the Figma MCP call limit on the current plan was hit. They are listed in `lib/app/pending_figma_screens.dart` and open a placeholder page, so every link in the flow still resolves.
+Ngibolekeni is a proposed peer-to-peer lending platform designed to
+make borrowing and lending more accessible by connecting people who need
+financial assistance with individuals who are willing and able to lend.
+The app aims to provide a structured, transparent and user-friendly
+digital environment in which users can discover lending opportunities,
+submit or review requests, manage agreements and monitor repayment
+progress.
 
-## Run
+The name Ngibolekeni reflects the everyday idea of asking to borrow.
+The product brings that familiar interaction into a digital experience,
+with clearer processes, better visibility and tools intended to support
+trust between participants.
 
-```bash
-flutter create . --platforms=android,ios,web   # generates the platform folders only (keeps lib/ and pubspec.yaml)
-flutter pub get
-flutter run
-```
+> **Product status:** This document describes the intended product
+> concept and user experience. It does not imply that the platform is
+> already launched, that lending transactions are currently supported,
+> or that any financial, identity-verification or compliance
+> integrations are operational.
 
-The app opens on a **screen gallery** (`/gallery`) listing every screen. To boot straight into the product use `AppConfig(startRoute: '/screen/ONB-01')`.
+1. The problem
 
-Fonts: the design uses **DM Sans** and **Comfortaa**. Add the `.ttf` files to `assets/fonts/` and uncomment the `fonts:` block in `pubspec.yaml`. Until then the platform font is used.
+Informal borrowing and lending often happens through personal networks
+and messaging channels. While these arrangements can be convenient, they
+may lack consistent records, clear repayment expectations and a shared
+view of outstanding obligations. People seeking short-term financial
+assistance may also struggle to find suitable lenders, while potential
+lenders may have limited information with which to assess a request.
 
-## Architecture
+Ngibolekeni is intended to help address these challenges by giving both
+sides a dedicated place to manage the lending journey.
 
-```
-lib/
-  main.dart
-  app/                       composition root
-    app.dart                 MaterialApp, theme + config injection
-    app_router.dart          /screen/<ID> and /gallery, placeholders for missing screens
-    modules.dart             the list of feature modules  <-- add new modules here
-    pending_figma_screens.dart  frames not yet imported (with Figma node ids)
-  core/
-    theme/                   app_tokens.dart (colours, radii, spacing, type) + app_theme.dart
-    config/                  app_config.dart (brand name, sample badge, start route)
-    ui/                      reusable design-system widgets (one file each)
-    spec/                    screen_spec.dart (content model), spec_dsl.dart, spec_renderer.dart
-    navigation/              feature_module.dart (module + registry), app_navigation.dart
-    pages/                   ScreenSpecPage, GalleryPage, PlaceholderPage
-  features/
-    onboarding/              onboarding_screens.dart + onboarding_module.dart
-    borrower/                borrower_screens.dart  + borrower_module.dart
-    lender/                  lender_screens.dart    + lender_module.dart
-test/screens_test.dart
-```
+2. The proposed solution
 
-### How a screen is built
+Ngibolekeni brings borrowers and lenders together through a mobile-first
+platform. Borrowers can create and manage requests for financial
+assistance. Lenders can review available requests and decide whether
+they wish to engage. The platform is intended to make the steps, terms
+and status of an arrangement easier for both parties to understand.
 
-Screens in the file repeat one small vocabulary (section card, heading, supporting copy, amount, detail row, status badge, checklist, form field, progress, button). So each screen is **data** (`ScreenSpec`) and a single renderer (`SpecRenderer`) maps every block to a design-system widget.
+The app is designed around three principles:
 
-```dart
-S('BRW-09', 'Your received offers', 'TM-2048 · separate published scenario', [
-  sec('Offer A · Sample Lender A', [
-    badge('Available until 23 Oct · 17:00 SAST'),
-    h('Offer A · Sample Lender A'),
-    amt('R 3,240.00'),
-    row('Net proceeds', 'R 3,000.00'),
-    btn('Review Offer A', 'primary', to: 'BRW-11'),
-  ]),
-]),
-```
+● Accessibility: make the borrowing and lending journey
+straightforward to navigate.
 
-Names mirror the Figma layer names (`Detail row` → `row`, `Status badge` → `badge`, `Financial amount` → `amt`, `Action` → `btn`), so a new frame can be transcribed line by line.
+● Transparency: make request details, agreed terms and repayment
+status visible to the relevant participants.
 
-### Customising the UX
+● Trust and accountability: support appropriate identity checks,
+documented agreements and clear transaction records as the product
+and its compliance model are developed.
 
-| I want to… | Change |
-|---|---|
-| Re-skin colours, radii, spacing, fonts | `AppTokens` in `core/theme/app_tokens.dart`, or pass your own `AppTokens(colors: AppColors(primary: …))` to `TransferMeApp(tokens: …)` |
-| Change how every detail row / badge / button looks | the widget in `core/ui/` |
-| Change which widget draws a block | override `SpecRenderer.buildBlock` and pass the subclass to `ScreenSpecPage(renderer: …)` |
-| Hide the "SAMPLE DATA" pill, rename the brand, change the start screen | `AppConfig` |
-| Change bottom-bar tabs or which tab a screen highlights | the module file (`*_module.dart`) |
-| Add an area of the app | new folder in `features/`, a `FeatureModule`, register it in `app/modules.dart` |
-| Replace a generated screen with a hand-built one | register a custom route in `AppRouter._screen` before the registry lookup |
+3. User roles
 
-### Design-system widgets (`core/ui`)
+Borrower
 
-`AppButton` (primary / secondary / tertiary / danger, loading, disabled) · `AppTextField` (incl. password toggle) · `AppSelectField` · `StatusBadge` · `SectionCard` (+ tones: plain, success, warning, error, dark) · `DetailRow` · `AmountText` · `ChecklistItem` · `AppProgressBar` · `AppBottomNav` · `ScreenScaffold`. Import them all with `core/ui/design_system.dart`.
+A borrower is a user seeking financial assistance. The intended borrower
+experience includes:
 
-## Getting the files
+● Creating a profile and completing the required onboarding steps.
 
-The project is a plain folder of 36 text files (no generated platform code). Ways to use it:
+● Submitting a loan request with the relevant amount, purpose and
+proposed repayment information.
 
-1. **Zip download:** `transferme_app.zip`, delivered with this README. Unzip it anywhere, e.g. `~/dev/transferme_app`.
-2. **Put it in git:** `cd transferme_app && git init && git add . && git commit -m "Initial import from Figma"`, then push to your own GitHub/GitLab repo so the team shares one copy.
-3. **Run it:**
-   ```bash
-   cd transferme_app
-   flutter create . --platforms=android,ios,web   # adds platform folders, keeps lib/ and pubspec.yaml
-   flutter pub get
-   flutter analyze && flutter test
-   flutter run                                    # opens the screen gallery
-   ```
-   Requires Flutter 3.19+ (Dart 3.3+).
+● Reviewing the status of submitted requests.
 
-## Still to import (needs Figma access)
+● Viewing the details and terms of an offer before accepting it.
 
-Done in the last session: BRW-01 only, because the Figma MCP quota ran out again. Remaining, with node ids, in `lib/app/pending_figma_screens.dart`: ONB-09, BRW-04, LND-04, BRW-10, BRW-12, BRW-14, SHR-RECEIPT, plus the 38 legacy "Small Money" frames (splash, onboarding 6-26, auth, transaction, success). Each frame's text goes in as an `S(...)` entry in the matching `features/*/…_screens.dart`; delete its `PendingFrame` entry afterwards.
+● Tracking active borrowing arrangements and repayment progress.
 
-## Screen map
+● Accessing a history of previous and current requests.
 
-| Module | Figma ids | Imported |
-|---|---|---|
-| Onboarding & identity | ONB-01 … ONB-13 | ONB-01…ONB-13 except ONB-09 (route frame `/verification`, node `321:1193`) |
-| Borrower | BRW-01, 02, 03, 05, 06, 07, 08, 09, 11, 13, 15–21 | yes |
-| Borrower, linked but pending | BRW-04 `/loans/new`, BRW-10 offers, BRW-12 agreement, BRW-14 loan tracking, receipt | placeholders (nodes `321:1322`, `321:1659`, `321:1826`, `321:1988`, `321:2147`) |
-| Lender | LND-01 … LND-03, LND-05 … LND-18 | yes |
-| Lender, linked but pending | LND-04 `/marketplace` | placeholder (node `321:1490`) |
-| Earlier "Small Money" flows | splash, onboarding 6–26, login, register, transfer, success (39 frames, 375×812) | pending – see `pending_figma_screens.dart` |
-| Support / shared / state variants | SUP-01…11, SHR-01…04, ST-xx | linked from many screens but **no frames exist in the file**; the five `Building …` frames (Lifecycle, Admin, Support, States, Handoff) contain only empty rectangles |
+Lender
 
-The mapping of route frames to ids (for example `/home` → BRW-01) is inferred from the cross references between screens; check it when importing.
+A lender is a user considering providing funds to a borrower. The
+intended lender experience includes:
 
-## Deviations from the Figma file (deliberate)
+● Creating a profile and completing the required onboarding steps.
 
-* The "Static destination" captions and the per-screen "Fictional sample only…" footers are not repeated as text. Destinations became real navigation and the footer is generated (`AppConfig.sampleFooter`).
-* Consent sentences that were plain paragraphs (for example "I reviewed the amount, method and allocation.") are rendered as unchecked checkboxes.
-* ONB-12 "Continue to verification" links to BRW-01 instead of to itself.
-* The bottom tab bar appears on onboarding screens because the frames show it; return an empty `nav` list in `onboarding_module.dart` to hide it.
-* Which tab is highlighted is decided per module (the file's active marker could not be read reliably).
-* Colours, fonts, sizes and radii come from an aggregate of the design-system section and five sample screens; exact paddings and the button radius were not measured, so compare against the frames when polishing.
+● Browsing or reviewing eligible borrowing requests.
 
-## Next steps
+● Viewing the information made available for assessing a request.
 
-1. `flutter analyze` and `flutter test`, fix anything the compiler flags.
-2. Re-run the Figma import for the frames in `pending_figma_screens.dart` once the MCP limit resets (or upgrade the plan).
-3. Replace mock actions (`AppNavigation.notConnected`) with real use cases; the spec layer is UI only, so add state management (Riverpod / Bloc) per module as needed.
+● Making or responding to a lending offer, where supported by the
+agreed product rules.
+
+● Reviewing proposed terms before confirming an arrangement.
+
+● Monitoring active loans, repayment progress and lending history.
+
+Administrator
+
+The administrator role is intended to support platform oversight and
+operational management. Depending on the final operating model, the
+administration experience may include:
+
+● Managing user accounts and access.
+
+● Reviewing reported issues and disputes.
+
+● Monitoring platform activity and transaction records.
+
+● Managing verification outcomes and operational exceptions.
+
+● Maintaining platform settings and supporting responsible platform
+operations.
+
+Administrative permissions should be role-based and restricted to
+authorised personnel.
+
+4. Core product areas
+
+The planned application is organised around the following areas:
+
+Product area                        Purpose
+
+Onboarding and registration         Introduce the platform and guide
+users through account creation.
+
+Identity and document verification  Support identity checks and
+document submission, subject to the
+selected verification provider and
+compliance requirements.
+
+User dashboard                      Give each user a clear overview of
+relevant activity and outstanding
+actions.
+
+Borrower experience                 Create requests, review offers and
+manage borrowing arrangements.
+
+Lender experience                   Discover requests, assess available
+information and manage lending
+activity.
+
+Loan details                        Present the agreed amount, terms,
+dates and status of an arrangement.
+
+Repayment tracking                  Show repayment schedules, recorded
+payments and outstanding balances.
+
+Notifications                       Keep users informed about relevant
+updates and actions.
+
+Administration                      Provide authorised operators with tools for platform oversight and support.
+
+These are intended product capabilities. The exact feature set, payment
+flows, verification provider and operational rules remain subject to
+product, technical and regulatory decisions.
+
+5. Key user journeys
+
+Borrowing journey
+
+1. The user opens Ngibolekeni and creates an account.
+
+2. The user completes the required profile and verification steps.
+
+3. The user submits a borrowing request.
+
+4. The user monitors the request and reviews any offers received.
+
+5. The user reviews the proposed terms and confirms whether to proceed.
+
+6. Once an arrangement is active, the user tracks repayment information
+and receives relevant updates.
+
+Lending journey
+
+1. The user creates an account and completes the required onboarding
+steps.
+
+2. The user explores borrowing requests made available to lenders.
+
+3. The user reviews the request information and proposed terms.
+
+4. The user chooses whether to make or accept an offer, according to
+the platform’s rules.
+
+5. Once an arrangement is confirmed, the user monitors its status and
+repayment progress.
+
+Account and support journey
+
+Users should be able to manage their profile, review relevant activity,
+receive important notifications and find a clear route to report a
+problem or request assistance.
+
+6. Interface and experience direction
+
+Ngibolekeni is intended to have a clean, minimal and accessible
+interface. The experience should feel approachable without making
+financial activity feel casual or unclear.
+
+The visual direction uses an Oxford-blue palette:
+
+● Deep navy: #051729
+
+● Dark blue: #08223B
+
+● Secondary navy: #092541
+
+● Medium blue: #0F4373
+
+● Accent blue: #1A77CD
+
+● White and restrained neutral tones for contrast and readability.
+
+The brand concept uses an abstract hands motif to communicate giving and
+receiving. The mark should remain minimal, using a simple outline
+treatment rather than detailed illustrations or human figures.
+
+The interface should prioritise:
+
+● Clear navigation and recognisable actions.
+
+● Readable loan amounts, dates and status indicators.
+
+● Consistent layouts across mobile screens and responsive web views.
+
+● Accessible colour contrast and legible typography.
+
+● Clear confirmation steps for consequential actions.
+
+● Helpful empty, loading, error and success states.
+
+● Plain-language explanations of financial terms and user
+responsibilities.
+
+7. Platform vision
+
+The product is being considered as a cross-platform experience, with a
+Flutter-based mobile application and a web experience. The interface
+design should be consistent across form factors while making sensible
+use of each screen size.
+
+The product vision is to create a dependable digital environment for
+person-to-person lending, where users can understand the process, make
+informed decisions and keep a reliable record of their arrangements.
+
+8. Trust, safety and responsible operation
+
+Because Ngibolekeni concerns financial arrangements between people,
+trust and responsible operation are central to the product.
+
+Before the platform facilitates real lending or payment activity, its
+operating model will need to address, among other matters:
+
+● Applicable financial-services, lending, consumer-protection and
+data-protection requirements in each target market.
+
+● The platform’s legal role in the lending relationship.
+
+● Identity verification and fraud prevention.
+
+● How affordability, risk and eligibility are assessed, if applicable.
+
+● Clear disclosure of fees, interest, repayment obligations and
+consequences of non-payment.
+
+● Secure handling of personal information and documents.
+
+● Payment processing, reconciliation, refunds and dispute handling.
+
+● Complaints, customer support and record retention.
+
+The app should not imply that a borrower is guaranteed funding or that a
+lender is guaranteed repayment. Any risk indicators or verification
+results should be explained accurately and should not be presented as
+guarantees.
+
+9. Product positioning
+
+Ngibolekeni is a peer-to-peer lending platform concept that aims to
+make personal borrowing and lending more organised, transparent and
+accessible.
+
+It is designed to connect people, structure the steps involved in a
+lending arrangement and give participants a shared view of requests,
+agreed terms and repayment activity.
+
+10. Short description
+
+Ngibolekeni is a mobile-first peer-to-peer lending app concept that
+connects people seeking financial assistance with individuals willing to
+lend. It is designed to support borrower and lender onboarding, loan
+requests and offers, documented terms, repayment tracking and clear
+account dashboards in a simple, transparent user experience.
+
+This description is a product overview, not a financial promotion,
+lending offer or statement of regulatory approval. Final functionality
+and launch readiness depend on technical implementation, operational
+design and applicable legal and compliance review.
