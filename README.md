@@ -1,296 +1,232 @@
-Ngibolekeni
+<div align="center">
 
-App Description
+# 🤝 Ngibolekeni
 
-Ngibolekeni is a proposed peer-to-peer lending platform designed to
-make borrowing and lending more accessible by connecting people who need
-financial assistance with individuals who are willing and able to lend.
-The app aims to provide a structured, transparent and user-friendly
-digital environment in which users can discover lending opportunities,
-submit or review requests, manage agreements and monitor repayment
-progress.
+### *Ask to borrow. Offer to lend. Keep it clear.*
 
-The name Ngibolekeni reflects the everyday idea of asking to borrow.
-The product brings that familiar interaction into a digital experience,
-with clearer processes, better visibility and tools intended to support
-trust between participants.
+A mobile-first peer-to-peer lending platform concept that makes personal borrowing and lending more **accessible**, **transparent** and **accountable**.
 
-> **Product status:** This document describes the intended product
-> concept and user experience. It does not imply that the platform is
-> already launched, that lending transactions are currently supported,
-> or that any financial, identity-verification or compliance
-> integrations are operational.
+![Status](https://img.shields.io/badge/status-concept-1A77CD?style=for-the-badge)
+![Platform](https://img.shields.io/badge/mobile-Flutter-0F4373?style=for-the-badge&logo=flutter&logoColor=white)
+![Platform](https://img.shields.io/badge/web-responsive-092541?style=for-the-badge)
+![Theme](https://img.shields.io/badge/theme-Oxford%20Blue-051729?style=for-the-badge)
 
-1. The problem
+</div>
 
-Informal borrowing and lending often happens through personal networks
-and messaging channels. While these arrangements can be convenient, they
-may lack consistent records, clear repayment expectations and a shared
-view of outstanding obligations. People seeking short-term financial
-assistance may also struggle to find suitable lenders, while potential
-lenders may have limited information with which to assess a request.
+---
 
-Ngibolekeni is intended to help address these challenges by giving both
-sides a dedicated place to manage the lending journey.
+> [!IMPORTANT]
+> **Product status:** This document describes the intended product concept and user experience. It does **not** imply that the platform is already launched, that lending transactions are currently supported, or that any financial, identity-verification or compliance integrations are operational.
 
-2. The proposed solution
+## 📑 Table of Contents
 
-Ngibolekeni brings borrowers and lenders together through a mobile-first
-platform. Borrowers can create and manage requests for financial
-assistance. Lenders can review available requests and decide whether
-they wish to engage. The platform is intended to make the steps, terms
-and status of an arrangement easier for both parties to understand.
+- [About](#-about)
+- [The Problem](#-the-problem)
+- [The Proposed Solution](#-the-proposed-solution)
+- [User Roles](#-user-roles)
+- [Core Product Areas](#-core-product-areas)
+- [Key User Journeys](#-key-user-journeys)
+- [Interface & Experience Direction](#-interface--experience-direction)
+- [Platform Vision](#-platform-vision)
+- [Trust, Safety & Responsible Operation](#-trust-safety--responsible-operation)
+- [Product Positioning](#-product-positioning)
+- [Disclaimer](#-disclaimer)
 
-The app is designed around three principles:
+---
 
-● Accessibility: make the borrowing and lending journey
-straightforward to navigate.
+## 💡 About
 
-● Transparency: make request details, agreed terms and repayment
-status visible to the relevant participants.
+Ngibolekeni is a proposed peer-to-peer lending platform that connects people who need financial assistance with individuals who are willing and able to lend. It provides a structured, transparent and user-friendly digital environment where users can discover lending opportunities, submit or review requests, manage agreements and monitor repayment progress.
 
-● Trust and accountability: support appropriate identity checks,
-documented agreements and clear transaction records as the product
-and its compliance model are developed.
+The name reflects the everyday idea of **asking to borrow**. The product brings that familiar interaction into a digital experience, with clearer processes, better visibility and tools intended to support trust between participants.
 
-3. User roles
+## ⚠️ The Problem
 
-Borrower
+Informal borrowing and lending often happens through personal networks and messaging channels. While convenient, these arrangements can suffer from:
 
-A borrower is a user seeking financial assistance. The intended borrower
-experience includes:
+- 📝 **Inconsistent records** of what was agreed
+- ⏰ **Unclear repayment expectations**
+- 👀 **No shared view** of outstanding obligations
+- 🔍 **Difficulty finding suitable lenders** for borrowers
+- ❓ **Limited information** for lenders assessing a request
 
-● Creating a profile and completing the required onboarding steps.
+Ngibolekeni gives both sides a dedicated place to manage the lending journey.
 
-● Submitting a loan request with the relevant amount, purpose and
-proposed repayment information.
+## ✨ The Proposed Solution
 
-● Reviewing the status of submitted requests.
+Ngibolekeni brings borrowers and lenders together through a mobile-first platform. Borrowers create and manage requests; lenders review available requests and decide whether to engage. Steps, terms and status are designed to be easy for both parties to understand.
 
-● Viewing the details and terms of an offer before accepting it.
+### Guiding Principles
 
-● Tracking active borrowing arrangements and repayment progress.
+| Principle | What it means |
+|---|---|
+| 🧭 **Accessibility** | Make the borrowing and lending journey straightforward to navigate. |
+| 🔎 **Transparency** | Make request details, agreed terms and repayment status visible to the relevant participants. |
+| 🛡️ **Trust & Accountability** | Support appropriate identity checks, documented agreements and clear transaction records as the product and its compliance model are developed. |
 
-● Accessing a history of previous and current requests.
+## 👥 User Roles
 
-Lender
+### 🙋 Borrower
 
-A lender is a user considering providing funds to a borrower. The
-intended lender experience includes:
+A user seeking financial assistance.
 
-● Creating a profile and completing the required onboarding steps.
+- Create a profile and complete the required onboarding steps
+- Submit a loan request with amount, purpose and proposed repayment information
+- Review the status of submitted requests
+- View the details and terms of an offer before accepting it
+- Track active borrowing arrangements and repayment progress
+- Access a history of previous and current requests
 
-● Browsing or reviewing eligible borrowing requests.
+### 💼 Lender
 
-● Viewing the information made available for assessing a request.
+A user considering providing funds to a borrower.
 
-● Making or responding to a lending offer, where supported by the
-agreed product rules.
+- Create a profile and complete the required onboarding steps
+- Browse or review eligible borrowing requests
+- View the information made available for assessing a request
+- Make or respond to a lending offer, where supported by the agreed product rules
+- Review proposed terms before confirming an arrangement
+- Monitor active loans, repayment progress and lending history
 
-● Reviewing proposed terms before confirming an arrangement.
+### 🛠️ Administrator
 
-● Monitoring active loans, repayment progress and lending history.
+Supports platform oversight and operational management. Depending on the final operating model, this may include:
 
-Administrator
+- Managing user accounts and access
+- Reviewing reported issues and disputes
+- Monitoring platform activity and transaction records
+- Managing verification outcomes and operational exceptions
+- Maintaining platform settings and supporting responsible operations
 
-The administrator role is intended to support platform oversight and
-operational management. Depending on the final operating model, the
-administration experience may include:
+> [!NOTE]
+> Administrative permissions should be **role-based** and restricted to authorised personnel.
 
-● Managing user accounts and access.
+## 🧩 Core Product Areas
 
-● Reviewing reported issues and disputes.
+| Area | Purpose |
+|---|---|
+| 🚪 **Onboarding & Registration** | Introduce the platform and guide users through account creation. |
+| 🪪 **Identity & Document Verification** | Support identity checks and document submission, subject to the selected verification provider and compliance requirements. |
+| 📊 **User Dashboard** | Give each user a clear overview of relevant activity and outstanding actions. |
+| 🙋 **Borrower Experience** | Create requests, review offers and manage borrowing arrangements. |
+| 💼 **Lender Experience** | Discover requests, assess available information and manage lending activity. |
+| 📄 **Loan Details** | Present the agreed amount, terms, dates and status of an arrangement. |
+| 📈 **Repayment Tracking** | Show repayment schedules, recorded payments and outstanding balances. |
+| 🔔 **Notifications** | Keep users informed about relevant updates and actions. |
+| 🛠️ **Administration** | Provide authorised operators with tools for platform oversight and support. |
 
-● Monitoring platform activity and transaction records.
+> These are intended product capabilities. The exact feature set, payment flows, verification provider and operational rules remain subject to product, technical and regulatory decisions.
 
-● Managing verification outcomes and operational exceptions.
+## 🗺️ Key User Journeys
 
-● Maintaining platform settings and supporting responsible platform
-operations.
+### Borrowing Journey
 
-Administrative permissions should be role-based and restricted to
-authorised personnel.
+```mermaid
+flowchart LR
+    A[Create account] --> B[Complete profile<br/>& verification]
+    B --> C[Submit borrowing<br/>request]
+    C --> D[Monitor request<br/>& review offers]
+    D --> E[Review terms<br/>& confirm]
+    E --> F[Track repayments<br/>& updates]
+```
 
-4. Core product areas
+1. Open Ngibolekeni and create an account.
+2. Complete the required profile and verification steps.
+3. Submit a borrowing request.
+4. Monitor the request and review any offers received.
+5. Review the proposed terms and confirm whether to proceed.
+6. Once active, track repayment information and receive relevant updates.
 
-The planned application is organised around the following areas:
+### Lending Journey
 
-Product area                        Purpose
+```mermaid
+flowchart LR
+    A[Create account<br/>& onboard] --> B[Explore borrowing<br/>requests]
+    B --> C[Review request<br/>& proposed terms]
+    C --> D[Make or accept<br/>an offer]
+    D --> E[Monitor status<br/>& repayments]
+```
 
-Onboarding and registration         Introduce the platform and guide
-users through account creation.
+1. Create an account and complete the required onboarding steps.
+2. Explore borrowing requests made available to lenders.
+3. Review the request information and proposed terms.
+4. Choose whether to make or accept an offer, according to the platform's rules.
+5. Once confirmed, monitor the arrangement's status and repayment progress.
 
-Identity and document verification  Support identity checks and
-document submission, subject to the
-selected verification provider and
-compliance requirements.
+### Account & Support Journey
 
-User dashboard                      Give each user a clear overview of
-relevant activity and outstanding
-actions.
+Users should be able to manage their profile, review relevant activity, receive important notifications and find a clear route to report a problem or request assistance.
 
-Borrower experience                 Create requests, review offers and
-manage borrowing arrangements.
+## 🎨 Interface & Experience Direction
 
-Lender experience                   Discover requests, assess available
-information and manage lending
-activity.
+Ngibolekeni is intended to have a **clean, minimal and accessible** interface. The experience should feel approachable without making financial activity feel casual or unclear.
 
-Loan details                        Present the agreed amount, terms,
-dates and status of an arrangement.
+### Colour Palette: Oxford Blue
 
-Repayment tracking                  Show repayment schedules, recorded
-payments and outstanding balances.
+| Swatch | Name | Hex |
+|:---:|---|---|
+| ![](https://img.shields.io/badge/%20%20%20%20%20-051729?style=flat-square) | Deep Navy | `#051729` |
+| ![](https://img.shields.io/badge/%20%20%20%20%20-08223B?style=flat-square) | Dark Blue | `#08223B` |
+| ![](https://img.shields.io/badge/%20%20%20%20%20-092541?style=flat-square) | Secondary Navy | `#092541` |
+| ![](https://img.shields.io/badge/%20%20%20%20%20-0F4373?style=flat-square) | Medium Blue | `#0F4373` |
+| ![](https://img.shields.io/badge/%20%20%20%20%20-1A77CD?style=flat-square) | Accent Blue | `#1A77CD` |
+| ![](https://img.shields.io/badge/%20%20%20%20%20-FFFFFF?style=flat-square) | White & restrained neutrals | Contrast and readability |
 
-Notifications                       Keep users informed about relevant
-updates and actions.
+### Brand Mark
 
-Administration                      Provide authorised operators with tools for platform oversight and support.
+An **abstract hands motif** communicates giving and receiving. The mark stays minimal, using a simple outline treatment rather than detailed illustrations or human figures.
 
-These are intended product capabilities. The exact feature set, payment
-flows, verification provider and operational rules remain subject to
-product, technical and regulatory decisions.
+### Design Priorities
 
-5. Key user journeys
+- ✅ Clear navigation and recognisable actions
+- ✅ Readable loan amounts, dates and status indicators
+- ✅ Consistent layouts across mobile screens and responsive web views
+- ✅ Accessible colour contrast and legible typography
+- ✅ Clear confirmation steps for consequential actions
+- ✅ Helpful empty, loading, error and success states
+- ✅ Plain-language explanations of financial terms and user responsibilities
 
-Borrowing journey
+## 📱 Platform Vision
 
-1. The user opens Ngibolekeni and creates an account.
+Ngibolekeni is being considered as a cross-platform experience:
 
-2. The user completes the required profile and verification steps.
+| Platform | Approach |
+|---|---|
+| 📱 **Mobile** | Flutter-based application |
+| 🌐 **Web** | Responsive web experience |
 
-3. The user submits a borrowing request.
+The interface should be consistent across form factors while making sensible use of each screen size. The vision is a dependable digital environment for person-to-person lending, where users can understand the process, make informed decisions and keep a reliable record of their arrangements.
 
-4. The user monitors the request and reviews any offers received.
+## 🔐 Trust, Safety & Responsible Operation
 
-5. The user reviews the proposed terms and confirms whether to proceed.
+Because Ngibolekeni concerns financial arrangements between people, trust and responsible operation are central. Before the platform facilitates real lending or payment activity, its operating model will need to address, among other matters:
 
-6. Once an arrangement is active, the user tracks repayment information
-and receives relevant updates.
+- ⚖️ Applicable financial-services, lending, consumer-protection and data-protection requirements in each target market
+- 🏛️ The platform's legal role in the lending relationship
+- 🪪 Identity verification and fraud prevention
+- 📉 How affordability, risk and eligibility are assessed, if applicable
+- 💬 Clear disclosure of fees, interest, repayment obligations and consequences of non-payment
+- 🔒 Secure handling of personal information and documents
+- 💳 Payment processing, reconciliation, refunds and dispute handling
+- 🎧 Complaints, customer support and record retention
 
-Lending journey
+> [!WARNING]
+> The app must not imply that a borrower is guaranteed funding or that a lender is guaranteed repayment. Any risk indicators or verification results should be explained accurately and not presented as guarantees.
 
-1. The user creates an account and completes the required onboarding
-steps.
+## 🎯 Product Positioning
 
-2. The user explores borrowing requests made available to lenders.
+Ngibolekeni is a peer-to-peer lending platform concept that aims to make personal borrowing and lending more organised, transparent and accessible. It is designed to connect people, structure the steps involved in a lending arrangement and give participants a shared view of requests, agreed terms and repayment activity.
 
-3. The user reviews the request information and proposed terms.
+**In short:** a mobile-first peer-to-peer lending app concept that connects people seeking financial assistance with individuals willing to lend, supporting onboarding, loan requests and offers, documented terms, repayment tracking and clear account dashboards in a simple, transparent experience.
 
-4. The user chooses whether to make or accept an offer, according to
-the platform’s rules.
+## 📜 Disclaimer
 
-5. Once an arrangement is confirmed, the user monitors its status and
-repayment progress.
+This description is a product overview, **not** a financial promotion, lending offer or statement of regulatory approval. Final functionality and launch readiness depend on technical implementation, operational design and applicable legal and compliance review.
 
-Account and support journey
+---
 
-Users should be able to manage their profile, review relevant activity,
-receive important notifications and find a clear route to report a
-problem or request assistance.
+<div align="center">
 
-6. Interface and experience direction
+**Ngibolekeni** · *Borrowing and lending, made clear.*
 
-Ngibolekeni is intended to have a clean, minimal and accessible
-interface. The experience should feel approachable without making
-financial activity feel casual or unclear.
-
-The visual direction uses an Oxford-blue palette:
-
-● Deep navy: #051729
-
-● Dark blue: #08223B
-
-● Secondary navy: #092541
-
-● Medium blue: #0F4373
-
-● Accent blue: #1A77CD
-
-● White and restrained neutral tones for contrast and readability.
-
-The brand concept uses an abstract hands motif to communicate giving and
-receiving. The mark should remain minimal, using a simple outline
-treatment rather than detailed illustrations or human figures.
-
-The interface should prioritise:
-
-● Clear navigation and recognisable actions.
-
-● Readable loan amounts, dates and status indicators.
-
-● Consistent layouts across mobile screens and responsive web views.
-
-● Accessible colour contrast and legible typography.
-
-● Clear confirmation steps for consequential actions.
-
-● Helpful empty, loading, error and success states.
-
-● Plain-language explanations of financial terms and user
-responsibilities.
-
-7. Platform vision
-
-The product is being considered as a cross-platform experience, with a
-Flutter-based mobile application and a web experience. The interface
-design should be consistent across form factors while making sensible
-use of each screen size.
-
-The product vision is to create a dependable digital environment for
-person-to-person lending, where users can understand the process, make
-informed decisions and keep a reliable record of their arrangements.
-
-8. Trust, safety and responsible operation
-
-Because Ngibolekeni concerns financial arrangements between people,
-trust and responsible operation are central to the product.
-
-Before the platform facilitates real lending or payment activity, its
-operating model will need to address, among other matters:
-
-● Applicable financial-services, lending, consumer-protection and
-data-protection requirements in each target market.
-
-● The platform’s legal role in the lending relationship.
-
-● Identity verification and fraud prevention.
-
-● How affordability, risk and eligibility are assessed, if applicable.
-
-● Clear disclosure of fees, interest, repayment obligations and
-consequences of non-payment.
-
-● Secure handling of personal information and documents.
-
-● Payment processing, reconciliation, refunds and dispute handling.
-
-● Complaints, customer support and record retention.
-
-The app should not imply that a borrower is guaranteed funding or that a
-lender is guaranteed repayment. Any risk indicators or verification
-results should be explained accurately and should not be presented as
-guarantees.
-
-9. Product positioning
-
-Ngibolekeni is a peer-to-peer lending platform concept that aims to
-make personal borrowing and lending more organised, transparent and
-accessible.
-
-It is designed to connect people, structure the steps involved in a
-lending arrangement and give participants a shared view of requests,
-agreed terms and repayment activity.
-
-10. Short description
-
-Ngibolekeni is a mobile-first peer-to-peer lending app concept that
-connects people seeking financial assistance with individuals willing to
-lend. It is designed to support borrower and lender onboarding, loan
-requests and offers, documented terms, repayment tracking and clear
-account dashboards in a simple, transparent user experience.
-
-This description is a product overview, not a financial promotion,
-lending offer or statement of regulatory approval. Final functionality
-and launch readiness depend on technical implementation, operational
-design and applicable legal and compliance review.
+</div>
