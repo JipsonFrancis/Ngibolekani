@@ -1,0 +1,45 @@
+name: transferme_app
+description: >-
+  TransferMe - modular Flutter implementation of the Figma design
+  (Small Money adaptation). Borrower, lender and onboarding experiences.
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: '>=3.19.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Brand fonts used by the Figma file: "DM Sans" (body) and "Comfortaa" (headings).
+  # Download both families (Google Fonts, OFL licence), copy the .ttf files into
+  # assets/fonts/ and uncomment this block. Until then Flutter falls back to the
+  # platform font, so the app still runs. Family names are set in
+  # lib/core/theme/app_tokens.dart (AppTypography).
+  #
+  # fonts:
+  #   - family: DM Sans
+  #     fonts:
+  #       - asset: assets/fonts/DMSans-Regular.ttf
+  #       - asset: assets/fonts/DMSans-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/DMSans-SemiBold.ttf
+  #         weight: 600
+  #       - asset: assets/fonts/DMSans-Bold.ttf
+  #         weight: 700
+  #   - family: Comfortaa
+  #     fonts:
+  #       - asset: assets/fonts/Comfortaa-SemiBold.ttf
+  #         weight: 600
+  #       - asset: assets/fonts/Comfortaa-Bold.ttf
+  #         weight: 700
